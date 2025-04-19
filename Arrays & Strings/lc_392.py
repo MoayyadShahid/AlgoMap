@@ -11,7 +11,7 @@ class Solution:
             return False
 
         for i in range(t_len):
-            if s_ptr == s_len - 1 and s_ptr > 0:
+            if s_ptr == s_len - 1 and t[i] == s[s_ptr]:
                 return True
             elif t[i] == s[s_ptr]:
                 s_ptr += 1
