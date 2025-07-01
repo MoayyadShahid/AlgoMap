@@ -14,3 +14,12 @@ class Solution:
         # return false since we have only occurrences of = 1
         return False
         
+
+# This is a short form solution where the idea is if we have the length of the list nums
+# and we turn that list into a set, then the set should have less elements if there are duplicates
+# otherwise if the set and list have equivalent lengths then we know they don't contain duplicates
+# the algorithmic time complexity would be O(N) as well, but it's a 1-liner
+#
+# Solution:
+#               return len(nums) > len(set(nums))
+#
