@@ -18,3 +18,4 @@ class Solution:
         # return the majority element
         return maj
         # Run Time: O(N)
+
