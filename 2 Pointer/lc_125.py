@@ -22,5 +22,4 @@ class Solution:
             right -= 1
         # otherwise we have gone through the list and everything matches up
         return True
-        # Run Time: O(N) 
-        
+        # Run Time: O(N)  
