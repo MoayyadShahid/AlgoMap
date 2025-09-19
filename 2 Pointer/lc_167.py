@@ -17,5 +17,5 @@ class Solution:
             elif val > target: # if sum is over than target, decrement right ptr
                 right -= 1
             else: # otherwise we got the target
-                return [left, right]
+                return [left + 1, right + 1]
         # Run Time: O(N)
