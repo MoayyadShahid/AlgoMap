@@ -35,6 +35,3 @@ class Solution:
 
         return final_sum
         # Run Time: O(N)
-            
-            
-        
