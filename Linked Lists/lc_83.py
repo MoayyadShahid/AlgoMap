@@ -12,8 +12,6 @@ class Solution:
     we have [a], we check that the next node of [a] is also [a] so we make the next node of the 1st [a] equal to the node [b] which is the next node of the 2nd [a]
     '''
     def deleteDuplicates(self, head: Optional[ListNode]) -> Optional[ListNode]:
-        # we have final which points to the head node
-        final = head
         # curr node which will be used to go through the list and be modified
         curr = head
         while curr: # go through the list while the curr node isn't Null
@@ -25,5 +23,5 @@ class Solution:
                 # otherwise we don't have a duplicate, so we just update the curr to be the next node
                 curr = curr.next
         # return the modified, de-duplicated list
-        return final
+        return head
         # Run Time: O(N)
