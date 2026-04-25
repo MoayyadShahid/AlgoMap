@@ -2,6 +2,7 @@ class Solution:
     def exist(self, board: List[List[str]], word: str) -> bool:
         # outer scope variable to track if we found a valid chain inside the character board
         res = False
+        sol = []
 
         # we need to track 3 items while backtracking, first is the index i of the word that we are processing
         # and then the x and y coordinate of the grid element we are on, if we found a valid character that matches i
