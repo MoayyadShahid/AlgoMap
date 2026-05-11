@@ -1,36 +1,38 @@
 from collections import defaultdict
-import heapq
+import heapq as hq
 
 class Solution:
     def minCostConnectPoints(self, points: List[List[int]]) -> int:
-        
-        graph = defaultdict(list)
+        # we are utilizing Prim's Algorithm here for Minimum Spanning Tree (MST)
 
-        for i in range(len(points)):
-            for j in range(len(points)):
-                if i != j:
-                    manhat = abs(points[i][0] - points[j][0]) + abs(points[i][1] - points[j][1])
-                    graph[tuple(points[i])].append((manhat, points[j]))
-        
         visited = set()
-        min_heap = []
-
-        init = tuple(points[0])
-        visited.add(init)
-        for nei in graph[init]:
-            heapq.heappush(min_heap, nei)
-        
+        heap = []
+        hq.heappush(heap, (0, 0))
         cost = 0
-        while min_heap and len(visited) != len(points):
-            
-            small_cost, small_node = heapq.heappop(min_heap)
-            small_node = tuple(small_node)
-            
-            if small_node not in visited:
-                cost += small_cost
-                visited.add(small_node)
-                for nei in graph[small_node]:
-                    heapq.heappush(min_heap, nei)
 
+        # when we have visited all the nodes then we will have completed our MST
+        while len(visited) < len(points):
+            # we pop the node at index idx of the points array, and we are ordering the heap by distances
+            curr = hq.heappop(heap)
+            gap, idx = curr[0], curr[1]
+            
+            # if the current node hasn't been visited then we will process it
+            if idx not in visited:
+                # we increment the total cost by the distance of the current node from the previous visited node
+                cost += gap
+                # we add the new node to visited
+                visited.add(idx)
+                # we get its coordinates
+                xi, yi = points[idx]
 
-        return cost    
+                # now we go through all the nodes again
+                for z in range(len(points)):
+                    # if any node isn't in visited we see the distance from the current node to non-visited neighbors
+                    # then we add those neighbours in by distance from current into the heap
+                    if z not in visited:
+                        xj, yj = points[z]
+                        dist = abs(xi - xj) + abs(yi - yj)
+                        hq.heappush(heap, (dist, z))
+
+        return cost
+    # Run Time: O(N ^ 2 log N)
